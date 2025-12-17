@@ -24,7 +24,17 @@ You can delete everything else in this folder (including `Final_project`) and th
 ### Phase 3: Advanced Mechanics (The Gameplay) ⚔️
 *   **[Chapter 16: Platformer Physics](./Notes/Chapter_16_Platformer_Physics.ipynb)**: **Vector Math**, Gravity, Jumping, and Wall Collisions.
 *   **[Chapter 17: GUI & Menus](./Notes/Chapter_17_GUI_and_Menus.ipynb)**: Interactable **Buttons**, Health Bars, and Hearts.
+*   **[Chapter 18: Local Multiplayer](./Notes/Chapter_18_Local_Multiplayer.ipynb)**: **Couch Co-op** with 2 Controllers/Players.
+*   **[Chapter 19: Procedural Generation](./Notes/Chapter_19_Procedural_Generation.ipynb)**: Creating **Infinite Maps** using Random Walks.
+*   **[Chapter 20: Pathfinding](./Notes/Chapter_20_Pathfinding.ipynb)**: **Artificial Intelligence** (A*) for smart enemies that solve mazes.
 *   **[Chapter 12: Saving & Loading](./Notes/Chapter_12_Saving_and_Loading_Data.ipynb)**: Persisting data using JSON (High Scores/Progress).
+
+### Phase 5: Multiplayer Expansion (Using Sockets) 🌐
+*   **[Chapter M1: The Server](./Multiplayer/Chapter_M1_The_Local_Server.ipynb)**: Setting up a Listening Server using Python `sockets`.
+*   **[Chapter M2: The Client](./Multiplayer/Chapter_M2_The_Client.ipynb)**: Connecting to Localhost and sending strings.
+*   **[Chapter M3: Sending Data](./Multiplayer/Chapter_M3_Sending_Data.ipynb)**: Using `pickle` to send complex Game Objects.
+*   **[Chapter M4: The Online Game](./Multiplayer/Chapter_M4_The_Online_Game.ipynb)**: A full real-time Multiplayer Arena.
+*   **[Chapter M5: LAN & Internet](./Multiplayer/Chapter_M5_LAN_and_Internet.ipynb)**: Playing with friends over Wi-Fi or the Internet.
 
 ### Phase 4: Production & Release (The World) 🌍
 *   **[Chapter 11: Resolution & Scaling](./Notes/Chapter_11_Resolution_and_Scaling.ipynb)**: Aspect Ratio preservation and Fullscreen handling.
