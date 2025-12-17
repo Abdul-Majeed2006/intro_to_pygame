@@ -36,6 +36,29 @@ You can delete everything else in this folder (including `Final_project`) and th
 *   **[Chapter M4: The Online Game](./Multiplayer/Chapter_M4_The_Online_Game.ipynb)**: A full real-time Multiplayer Arena.
 *   **[Chapter M5: LAN & Internet](./Multiplayer/Chapter_M5_LAN_and_Internet.ipynb)**: Playing with friends over Wi-Fi or the Internet.
 
+### Phase 6: The 3D Dimension 🧊
+- **3D-1**: The 3D Canvas *(Goodbye `blit`, Hello OpenGL)*
+- **3D-2**: The Triangle *(VBO, VAO, and GPU Memory)*
+- **3D-3**: Perspective *(Matrices: Model, View, Projection)*
+- **3D-4**: Shaders *(Programming the GPU with GLSL)*
+- **3D-5**: Depth & The Cube *(Z-Fighting Fix & 3D Objects)*
+- **3D-6**: First Person Camera *(WASD + Mouse Controls)*
+- **3D-7**: Multiplayer 3D *(Syncing 3D Worlds Over Network)*
+
+### Phase 7: Advanced 3D (AAA Techniques) 🎬
+- **A1**: Texturing & UV Mapping *(Loading images onto 3D models)*
+- **A2**: Model Loading *(OBJ/GLTF file formats)*
+- **A3**: Lighting Systems *(Phong shading with ambient/diffuse/specular)*
+- **A4**: Normal Maps & PBR *(Physically Based Rendering for photorealism)*
+- **A5**: Shadow Mapping *(Dynamic shadows with depth textures)*
+- **A6**: Physics Integration *(PyBullet for realistic collisions)*
+- **A7**: Advanced Networking *(Client-side prediction & lag compensation)*
+- **A8**: Frustum Culling *(Rendering optimization with octrees)*
+- **A9**: LOD Systems *(Level of Detail for massive worlds)*
+- **A10**: Post-Processing *(Bloom, HDR, motion blur)*
+- **A11**: Particle Systems *(GPU-instanced effects)*
+- **A12**: 3D Audio *(OpenAL for positional sound)*
+
 ### Phase 4: Production & Release (The World) 🌍
 *   **[Chapter 11: Resolution & Scaling](./Notes/Chapter_11_Resolution_and_Scaling.ipynb)**: Aspect Ratio preservation and Fullscreen handling.
 *   **[Chapter 15: Debugging & Performance](./Notes/Chapter_15_Debugging_and_Performance.ipynb)**: Visual Hitboxes, FPS Profiling, & Error Handling.
