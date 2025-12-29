@@ -38,6 +38,16 @@ pip install pygame
 Don't jump into the code yet! Start here:
 👉 **[The First Lesson: 01_Basics/lesson.md](./01_Basics/lesson.md)**
 
+### 🏁 Stable Checkpoints (Skip to any Chapter)
+Each module is tagged for stability. If you want to jump to a specific chapter's finalized code, use:
+
+```bash
+git checkout 01-basics
+git checkout 02-events
+git checkout 03-sprites
+git checkout 04-ui-sounds
+```
+
 ---
 
 ### 🗺️ The Learning Path
