@@ -63,14 +63,9 @@ This lets you change controls in one place without breaking your game logic.
 
 ---
 
+---
+
 ## 🛠️ Action: Mini-Exercise
 
-**Goal**: Implement a "Sprint" mechanic.
+Time to build some gameplay! Check out the [Module 02 Exercise](./exercise.md) to implement a professional "Sprint" mechanic.
 
-1. Open [examples.py](file:///c:/Users/m287110/Desktop/Git/Personal_projects/Learning_python/intro_to_pygame/02_Events_And_Input/examples.py).
-2. Create a variable `player_speed = 5`.
-3. Check if `pygame.K_LSHIFT` is being held down.
-4. If it is, set `player_speed = 10`. Otherwise, keep it at `5`.
-5. Use this `player_speed` variable to change how the white circle moves in your console logs or on-screen.
-
-**Check your progress**: If you can "sprint" by holding Shift, you've mastered state polling!

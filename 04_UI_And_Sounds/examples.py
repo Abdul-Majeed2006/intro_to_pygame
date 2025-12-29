@@ -26,95 +26,106 @@ except pygame.error:
 # 2. Window Setup
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+main_display_surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Lesson 04: UI and Sounds")
 
 # 3. Path Handling
-# We use a relative path to the local 'assets' folder to keep this chapter self-contained.
+# Absolute path construction ensures assets load correctly regardless of how the script is executed.
 ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 
 # 4. Assets & Resources
-# Using a high-quality font. We'll fall back to default if needed.
+# We attempt to find a system font, falling back to the built-in Pygame font if none exists.
+# This prevents the application from crashing on systems without 'Verdana'.
 try:
-    TITLE_FONT = pygame.font.SysFont("Verdana", 48, bold=True)
-    BUTTON_FONT = pygame.font.SysFont("Verdana", 24)
+    TITLE_FONT_FACE = pygame.font.SysFont("Verdana", 48, bold=True)
+    BUTTON_FONT_FACE = pygame.font.SysFont("Verdana", 24)
 except Exception:
-    TITLE_FONT = pygame.font.Font(None, 64)
-    BUTTON_FONT = pygame.font.Font(None, 32)
+    TITLE_FONT_FACE = pygame.font.Font(None, 64)
+    BUTTON_FONT_FACE = pygame.font.Font(None, 32)
 
-# Load Sfx safely
-click_sfx = None
-sfx_path = os.path.join(ASSETS_DIR, "Audio", "footstep_carpet_000.ogg")
-if os.path.exists(sfx_path):
+# Audio Assets
+# We load sounds into memory once (Sound objects) to avoid high-latency disk reads during gameplay.
+interaction_sfx_sample = None
+sfx_resource_path = os.path.join(ASSETS_DIR, "Audio", "footstep_carpet_000.ogg")
+if os.path.exists(sfx_resource_path):
     try:
-        click_sfx = pygame.mixer.Sound(sfx_path)
-    except Exception as e:
-        print(f"Warning: Failed to load click sound: {e}")
+        interaction_sfx_sample = pygame.mixer.Sound(sfx_resource_path)
+    except Exception as hardware_error:
+        print(f"Warning: Failed to load audio sample: {hardware_error}")
 
-# 5. Game State
-click_count = 0
-is_game_running = True
-clock = pygame.time.Clock()
+# 5. Application State
+interaction_count = 0
+is_interaction_active = True
+application_tick_clock = pygame.time.Clock()
 
-# UI Constants
-BUTTON_WIDTH = 220
-BUTTON_HEIGHT = 60
-BUTTON_X = (SCREEN_WIDTH // 2) - (BUTTON_WIDTH // 2)
-BUTTON_Y = (SCREEN_HEIGHT // 2) - (BUTTON_HEIGHT // 2)
-button_rect = pygame.Rect(BUTTON_X, BUTTON_Y, BUTTON_WIDTH, BUTTON_HEIGHT)
+# UI Layout Constants
+# Pro Tip: Defining these at the top makes it easy to refactor the UI layout later.
+BUTTON_PROPERTIES = {
+    'width': 220,
+    'height': 60,
+    'x': (SCREEN_WIDTH // 2) - 110,
+    'y': (SCREEN_HEIGHT // 2) - 30
+}
+interaction_button_rect = pygame.Rect(
+    BUTTON_PROPERTIES['x'], 
+    BUTTON_PROPERTIES['y'], 
+    BUTTON_PROPERTIES['width'], 
+    BUTTON_PROPERTIES['height']
+)
 
-# Colors
-COLOR_BG = (20, 20, 25) # Dark blue-grey
-COLOR_UI_TEXT = (255, 255, 0) # Yellow
-COLOR_BTN_NORMAL = (80, 80, 80)
-COLOR_BTN_HOVER = (120, 120, 120)
-COLOR_BTN_TEXT = (255, 255, 255)
+# Color Palette (HSL-aligned for professionalism)
+MIDNIGHT_VOICE = (20, 20, 25) 
+TEXT_HIGHLIGHT = (255, 255, 0) # Yellow
+BUTTON_IDLE = (80, 80, 80)
+BUTTON_ACTIVE = (120, 120, 120)
+BUTTON_TEXT_COLOR = (255, 255, 255)
 
-while is_game_running:
-    # Get mouse state once per frame
-    mouse_coords = pygame.mouse.get_pos()
+while is_interaction_active:
+    # We capture the mouse cursor state once at the start of the frame.
+    cursor_position = pygame.mouse.get_pos()
     
-    # --- Event Handling ---
+    # --- Input Processing ---
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            is_game_running = False
+            is_interaction_active = False
         
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1: # Left Click
-                # Check if we clicked the button
-                if button_rect.collidepoint(mouse_coords):
-                    click_count += 1
-                    if click_sfx:
-                        click_sfx.play()
+            if event.button == 1: # Primary Left Click
+                # Collision check: Did the user click inside the button area?
+                if interaction_button_rect.collidepoint(cursor_position):
+                    interaction_count += 1
+                    if interaction_sfx_sample:
+                        interaction_sfx_sample.play()
 
-    # --- Rendering ---
-    screen.fill(COLOR_BG)
+    # --- Render Pipeline ---
+    main_display_surface.fill(MIDNIGHT_VOICE)
     
-    # Render the counter text
-    counter_surface = TITLE_FONT.render(f"CLICKS: {click_count}", True, COLOR_UI_TEXT)
-    counter_x = (SCREEN_WIDTH // 2) - (counter_surface.get_width() // 2)
-    screen.blit(counter_surface, (counter_x, 80))
+    # Render the session score text
+    # Anti-aliasing (the 2nd parameter) is set to 'True' for smoother edges on high-res displays.
+    score_overlay_surface = TITLE_FONT_FACE.render(f"INTERACTIONS: {interaction_count}", True, TEXT_HIGHLIGHT)
+    score_overlay_x = (SCREEN_WIDTH // 2) - (score_overlay_surface.get_width() // 2)
+    main_display_surface.blit(score_overlay_surface, (score_overlay_x, 80))
     
-    # Render the button
-    current_btn_color = COLOR_BTN_NORMAL
-    if button_rect.collidepoint(mouse_coords):
-        current_btn_color = COLOR_BTN_HOVER
+    # Determine button state based on hover behavior
+    active_button_color = BUTTON_IDLE
+    if interaction_button_rect.collidepoint(cursor_position):
+        active_button_color = BUTTON_ACTIVE
     
-    # Draw button background
-    pygame.draw.rect(screen, current_btn_color, button_rect, border_radius=10)
+    # Draw button geometry
+    pygame.draw.rect(main_display_surface, active_button_color, interaction_button_rect, border_radius=10)
     
-    # Draw button text (pre-rendered for efficiency if this were a large game)
-    btn_text_surface = BUTTON_FONT.render("CLICK ME", True, COLOR_BTN_TEXT)
-    btn_text_x = button_rect.centerx - (btn_text_surface.get_width() // 2)
-    btn_text_y = button_rect.centery - (btn_text_surface.get_height() // 2)
-    screen.blit(btn_text_surface, (btn_text_x, btn_text_y))
+    # Draw button label
+    label_surface = BUTTON_FONT_FACE.render("CLICK ME", True, BUTTON_TEXT_COLOR)
+    label_x = interaction_button_rect.centerx - (label_surface.get_width() // 2)
+    label_y = interaction_button_rect.centery - (label_surface.get_height() // 2)
+    main_display_surface.blit(label_surface, (label_x, label_y))
 
-    # Update display
+    # Single-command update: Swap the buffers.
     pygame.display.flip()
     
-    # Limit frame rate
-    clock.tick(60)
+    # Regulate execution speed to prevent CPU thermal throttling.
+    application_tick_clock.tick(60)
 
-# 6. Clean Exit
+# 6. Resource Cleanup
 pygame.quit()
 sys.exit()

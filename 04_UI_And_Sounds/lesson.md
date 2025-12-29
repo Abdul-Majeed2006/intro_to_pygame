@@ -60,14 +60,9 @@ if button_rect.collidepoint(pygame.mouse.get_pos()):
 
 ---
 
+---
+
 ## 🛠️ Action: Mini-Exercise
 
-**Goal**: Implement a "Pause Toggle".
+Add the final "Juice" to your game! Head to the [Module 04 Exercise](./exercise.md) to implement a pause menu.
 
-1. Open [examples.py](file:///c:/Users/m287110/Desktop/Git/Personal_projects/Learning_python/intro_to_pygame/04_UI_And_Sounds/examples.py).
-2. Create a variable `game_paused = False`.
-3. In the Event Loop, check for `pygame.KEYDOWN` of `pygame.K_ESCAPE`.
-4. When pressed, toggle the variable: `game_paused = not game_paused`.
-5. In the rendering section, if `game_paused` is True, draw a semi-transparent dark rectangle over the whole screen and render the word "PAUSED" in the center.
-
-**Check your progress**: If you can press ESC to freeze the visual state and see a pause overlay, you've mastered the basics of State Machines!

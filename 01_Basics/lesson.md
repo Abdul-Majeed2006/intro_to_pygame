@@ -80,12 +80,9 @@ rect.center = (400, 300) # Snap to middle of screen
 
 ---
 
+---
+
 ## 🛠️ Action: Mini-Exercise
 
-**Goal**: Transform a blank screen into a textured environment.
+Ready to put your knowledge to the test? Head over to the [Module 01 Exercise](./exercise.md) to transform your blank window into a textured game world.
 
-1. Open [examples.py](file:///c:/Users/m287110/Desktop/Git/Personal_projects/Learning_python/intro_to_pygame/01_Basics/examples.py).
-2. Inside the drawing section, implement a **Nested Loop** that tiles the entire screen with the `sand_tile_image`.
-3. **Bonus**: Change the `TARGET_FPS` to `10` and then `120`. Observe how the "smoothness" of the window changes.
-
-**Check your progress**: Once you can see a full desert floor, you're ready for Module 02.

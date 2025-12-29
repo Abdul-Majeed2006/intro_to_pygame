@@ -23,70 +23,75 @@ if pygame.joystick.get_count() > 0:
 # 2. Window Setup
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+display_surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Lesson 02: Inputs")
 
 # 3. Handle Controller Discovery
-# We create a list of all detected joysticks and initialize them.
-connected_joysticks = []
-for i in range(pygame.joystick.get_count()):
-    joy = pygame.joystick.Joystick(i)
-    joy.init()
-    connected_joysticks.append(joy)
+# We initialize all detected joysticks to enable hardware-level input polling.
+connected_gamepads = []
+for gamepad_index in range(pygame.joystick.get_count()):
+    gamepad = pygame.joystick.Joystick(gamepad_index)
+    gamepad.init()
+    connected_gamepads.append(gamepad)
 
 # 4. Timer Setup
-clock = pygame.time.Clock()
+game_heartbeat_clock = pygame.time.Clock()
 TARGET_FPS = 60
 
 # 5. Core Game Loop
-is_running = True
-while is_running:
+is_engine_active = True
+while is_engine_active:
     # --- A. EVENT HANDLING (Discrete Actions) ---
-    # Use the Event Loop for things that happen ONCE per press (e.g., Jumping, Pausing).
+    # We use the Event Loop for 'one-off' triggers. This prevents a single click 
+    # from being registered as 60 separate clicks in a single second.
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            is_running = False
+            is_engine_active = False
         
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 print("ACTION: Spacebar pressed (Triggered once via Event Loop)")
             if event.key == pygame.K_ESCAPE:
-                is_running = False
+                is_engine_active = False
 
     # --- B. STATE CHECKING / POLLING (Continuous Actions) ---
-    # Use get_pressed() for things that happen AS LONG AS a key is held (e.g., Running, Steering).
-    keys_state = pygame.key.get_pressed()
-    if keys_state[pygame.K_w] or keys_state[pygame.K_UP]:
-        # Note: This will spam if left unchecked, usually you'd move a character here.
+    # We use 'get_pressed' for fluid, frame-by-frame movement. This ensures 
+    # movement feels responsive and doesn't rely on the OS repeating a key signal.
+    active_keys = pygame.key.get_pressed()
+    if active_keys[pygame.K_w] or active_keys[pygame.K_UP]:
+        # Professional Note: Logic would go here to move the character.
         pass 
 
     # --- C. MOUSE INPUT ---
-    current_mouse_pos = pygame.mouse.get_pos()
+    # Polling the mouse directly allows us to get the exact pixel coordinate in real-time.
+    current_mouse_position = pygame.mouse.get_pos()
     mouse_buttons_state = pygame.mouse.get_pressed()
     
-    if mouse_buttons_state[0]: # Index 0 is the Left Mouse Button
-        print(f"INPUT: Mouse Left Click at {current_mouse_pos}")
+    if mouse_buttons_state[0]: # Index 0 is the Primary (Left) Mouse Button
+        print(f"INPUT: Mouse Left Click at {current_mouse_position}")
 
     # --- D. CONTROLLER INPUT ---
-    for joystick in connected_joysticks:
-        # Check basic buttons (usually button 0 is 'A' or 'Cross')
-        if joystick.get_button(0):
-            print(f"INPUT: Button 0 pressed on {joystick.get_name()}")
+    for active_gamepad in connected_gamepads:
+        # We poll specific hardware indices for low-latency feedback.
+        if active_gamepad.get_button(0):
+            print(f"INPUT: Button 0 pressed on {active_gamepad.get_name()}")
 
     # --- RENDERING ---
-    BACKGROUND_COLOR = (50, 50, 50) # Dark Charcoal
-    screen.fill(BACKGROUND_COLOR)
+    CHARCOAL_GREY = (50, 50, 50)
+    display_surface.fill(CHARCOAL_GREY)
     
     # Visual Feedback: Draw a white circle tracking the mouse.
+    # We draw this every frame to provide immediate visual confirmation of input.
     POINTER_COLOR = (255, 255, 255)
     POINTER_RADIUS = 12
-    pygame.draw.circle(screen, POINTER_COLOR, current_mouse_pos, POINTER_RADIUS)
+    pygame.draw.circle(display_surface, POINTER_COLOR, current_mouse_position, POINTER_RADIUS)
 
+    # Double Buffering: Show the completed frame to the user.
     pygame.display.flip()
     
-    # Maintain constant speed
-    clock.tick(TARGET_FPS)
+    # Maintain constant speed regardless of computer power.
+    game_heartbeat_clock.tick(TARGET_FPS)
 
-# 6. Clean Exit
+# 6. Graceful Shutdown
 pygame.quit()
 sys.exit()
