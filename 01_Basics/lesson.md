@@ -85,6 +85,9 @@ rect.center = (400, 300) # Snap to middle of screen
 ## 🎯 The Definition of Mastery
 You have mastered this concept when you can describe exactly what happens in the 1/60th of a second between frames and can explain why "Double Buffering" is necessary for clean visuals.
 
+## 🔋 What this unlocks next
+This foundation allows you to move into **Interactive Physics**. Once you can control time, you can start controlling movement.
+
 ---
 
 ## 🛠️ Action: Mini-Exercise
