@@ -1,25 +1,29 @@
 # 🚀 Capstone Project: Space Salvage
 
-Welcome to the final test. You are no longer just following lessons; you are building a product.
-
-## The Mission
-Build a playable "Space Salvage" game using only the knowledge from Modules 01-04. You must handle movement, collisions, and state management without guided tutorials.
+## Concept
+You are the pilot of a deep-space salvage drone. Your mission is simple but dangerous: collect floating **Oxygen Tanks** while avoiding high-velocity **Meteors**. Your drone is fragile; too many impacts will cause a total system failure.
 
 ## Mandatory Features
-1. **Game Loop**: Locked at 60 FPS.
-2. **Keyboard Input**: 8-way movement with momentum.
-3. **Sprites**: Use `player.png` and `enemy.png`.
-4. **Collision Detection**: Pixel-perfect or Rect-based interaction.
-5. **System**: A hull integrity (health) and scoring system.
-6. **Game States**: A clear "Game Over" screen with a restart option.
+- **Deterministic Loop**: The game must run at its target FPS (60) without logic variability.
+- **8-Way Movement**: Responsive player movement using WASD or Arrow Keys.
+- **Dynamic Spawning**: Oxygen and Meteors must spawn at random positions.
+- **Boundary Clamping**: The player must be physically unable to leave the window.
+- **Collision Feedback**: 
+    - Collecting Oxygen increases the score and plays a sound.
+    - Hitting a Meteor reduces "Hull Integrity" and plays an impact sound.
+- **HUD (UI)**: Real-time display of Score and Health.
+- **Game State Logic**: A "Game Over" screen that stops play and allows for a reset.
 
-## Constraints
-- **Do NOT copy-paste** code from previous modules unless you can explain every line.
-- **Do NOT use external libraries** beyond Pygame and standard Python modules.
-- **Strict Naming**: Follow the rules in `CONTRIBUTING.md`.
+## Optional Challenges (Extra Credit)
+- **Momentum**: Implement velocity accumulation so the ship has "weight" and slides.
+- **Scaling Difficulty**: Spawning more meteors as the score increases.
+- **Animated Sprites**: Rotate the player ship based on movement direction.
 
-## Extra Credit
-- Implement a "High Score" system that saves to a file.
-- Add "Juice": Screen shake on impact or particle effects for salvage.
+## Hard Constraints
+- **Resolution**: 800x600 pixels.
+- **No External Libraries**: Use only pure Pygame and Python Standard Library.
+- **Code Standards**: Zero global spaghetti. All logic must be function or class-scoped.
 
-**Begin your journey in [starter_code.py](./starter_code.py)**.
+---
+
+**Proceed to [requirements.md](./requirements.md) for technical constraints.**

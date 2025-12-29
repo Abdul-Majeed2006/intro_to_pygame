@@ -47,6 +47,15 @@ How do we know when the player hits an enemy? Pygame provides highly optimized m
 - Group Check: `pygame.sprite.spritecollide(player, enemies, True)`
   - The `True` parameter means "Kill the enemy sprite; remove it from all groups permanently."
 
+## 5. Screen Boundaries (Clamping)
+
+To prevent your player from walking off the screen, we use the `Rect.clamp` method. It forces one rectangle to stay inside another.
+
+```python
+screen_rect = pygame.Rect(0, 0, 800, 600)
+player_sprite.rect.clamp_ip(screen_rect) # 'ip' means 'In Place'
+```
+
 ---
 
 ---
