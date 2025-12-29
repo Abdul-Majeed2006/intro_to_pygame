@@ -67,7 +67,11 @@ Each folder is a complete lesson including **Theory**, **Example Code**, **Local
 5. **[Final Capstone: Space Salvage](./Capstone_Project/)**
    The final test. Integrate everything to build your first "Momentum-based" space game.
 
-#### Phase 2: Advanced Labs (For Later)
+#### Phase 2: Advanced Engineering
+
+> [!IMPORTANT]
+> **You must earn the right to enter Phase 2.**
+> mastery of Chapters 1-4 and the Capstone Project is a hard prerequisite. Transition from a feature-builder to a system-engineer by following the [Advanced Roadmap](./ADVANCED_ROADMAP.md).
 
 > [!NOTE]
 > **Advanced material will be introduced after you master Chapters 1–4.** 
