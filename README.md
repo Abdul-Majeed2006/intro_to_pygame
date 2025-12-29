@@ -57,6 +57,10 @@ Each folder is a complete lesson including **Theory**, **Example Code**, **Local
 
 #### Phase 2: Advanced Labs (For Later)
 
+> [!NOTE]
+> **Advanced material will be introduced after you master Chapters 1–4.** 
+> Don't rush into these until you've cleared the project-self-contained fundamentals. Beginners often quit because they try to tackle sockets and threading before mastering the game loop. Stay focused!
+
 Exploration into specialized game dev domains once you've cleared Phase 1.
 
 - **[Networking](./Advanced_Archive/networking/)**
