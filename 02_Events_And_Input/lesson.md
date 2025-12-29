@@ -61,6 +61,13 @@ if is_moving_left:
 
 This lets you change controls in one place without breaking your game logic.
 
+## ⚠️ The Pitfalls: Common Beginner Mistakes
+- **Polling for Everything**: If you poll the 'SPACE' key for jumping, one button press might trigger 5 jumps because the key was held down for 5 frames. Use **Events** for triggers.
+- **Ignoring the Mouse Position**: Beginners often forget that `get_pos()` returns a coordinate relative to the *window*, not the whole world.
+
+## 🎯 The Definition of Mastery
+You have mastered this concept when you can justify the choice between `pygame.event` and `pygame.key.get_pressed()` for any given game mechanic.
+
 ---
 
 ---

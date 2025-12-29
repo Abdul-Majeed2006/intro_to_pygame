@@ -1,6 +1,7 @@
 # 🎵 Lesson 04: UI and Sounds
 
-A game that looks good but feels "empty" is missing the **Juice**. In this lesson, we add audio feedback and user interfaces to transform a project into a professional product.
+## 🧠 The Rationale: Why this exists
+A game that looks good but feels "empty" is missing the **Juice**. Professional games use audio feedback and dynamic user interfaces to communicate state and provide satisfactions. This lesson introduces **State Machines**, transforming your files from a "single script" into a "responsive product."
 
 ## 1. The Theory: State Machines
 
@@ -56,6 +57,13 @@ button_rect = pygame.Rect(300, 250, 200, 50)
 # Check for hover
 if button_rect.collidepoint(pygame.mouse.get_pos()):
     draw_color = (255, 0, 0) # Highlight red
+
+## ⚠️ The Pitfalls: Common Beginner Mistakes
+- **Loading Music in the Loop**: Never call `pygame.mixer.music.load()` inside your `while` loop. It will cause the game to freeze for a fraction of a second every frame as it tries to read the disk.
+- **Font Rendering Overhead**: Rendering text is slow. If your text doesn't change, render it once outside the loop and reuse the surface.
+
+## 🎯 The Definition of Mastery
+You have mastered this concept when you can orchestrate a transition between a "Splash Screen" and "Gameplay" using a central state variable and appropriate audio cues.
 ```
 
 ---
