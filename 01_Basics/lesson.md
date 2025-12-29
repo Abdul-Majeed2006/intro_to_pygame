@@ -78,7 +78,12 @@ rect = image.get_rect()
 rect.center = (400, 300) # Snap to middle of screen
 ```
 
----
+## ⚠️ The Pitfalls: Common Beginner Mistakes
+- **Forgetting the Event Loop**: If you don't call `pygame.event.get()`, your window will freeze because the OS thinks the app is unresponsive.
+- **Infinite FPS**: Not using `clock.tick(60)` will cause your CPU to skyrocket to 100% and your game will run "too fast" on powerful machines.
+
+## 🎯 The Definition of Mastery
+You have mastered this concept when you can describe exactly what happens in the 1/60th of a second between frames and can explain why "Double Buffering" is necessary for clean visuals.
 
 ---
 
