@@ -1,4 +1,4 @@
-# 📈 My Progression Tracker
+# Progression Tracker
 
 Use this file to track your journey from "Script Writer" to "Game Engineer". Check off tasks only when you have completed the module's exercise without looking at the solution code.
 

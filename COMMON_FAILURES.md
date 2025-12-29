@@ -1,4 +1,4 @@
-# 🛠️ Common Failures: Engineering Your Way Out
+# Common Failures: Engineering Your Way Out
 
 This document covers the "Why" behind common Pygame bugs. Do not look for a quick fix; seek to understand the underlying principle.
 
@@ -39,7 +39,7 @@ This document covers the "Why" behind common Pygame bugs. Do not look for a quic
 
 ---
 
-## 🏁 Debugging Discipline
+## Debugging Discipline
 If you are guessing what's wrong, you have already lost.
 1. **Isolate**: Comment out everything except the failing component.
 2. **Visualize**: Use `print()` to see the coordinates of your Rects or the value of your variables.
