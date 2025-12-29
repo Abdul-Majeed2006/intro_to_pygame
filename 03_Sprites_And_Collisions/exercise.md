@@ -1,13 +1,25 @@
-# 🛠️ Module 03 Exercise: Score Systems
+# 🛠️ Module 03 Exercise: Advanced Sprites & Logic
 
-## Goal: Create a score system that reacts to collisions.
+## Goal: Transition from simple "hits" to complex game physics and entity AI
 
-### 📝 Instructions
+### 📝 Level 1: The Predator Mechanic
 
 1. Open [examples.py](./examples.py).
-2. Create a variable `score = 0` before the game loop.
-3. Inside the loop, capture the result of the collision check: `hits = pygame.sprite.spritecollide(...)`.
-4. If `hits` contains any items, increment the `score` and `print(f"Current Score: {score}")`.
-5. **Bonus**: Use a `for` loop to spawn 10 enemies instead of 5.
+2. Implement a "Power-Up" state for the player (e.g., hold 'P').
+3. While powered up, change the player's color or scale.
+4. **Challenge**: Modify the Enemy class so they move **away** from the player if the power-up is active.
 
-**Check your progress**: If you can "eat" enemies and see your score rise in the console, you've mastered game physics!
+### 📝 Level 2: Structural Integrity (Hit Points)
+
+1. Give every Enemy a `self.health = 2` attribute.
+2. When a collision occurs, do not kill the enemy immediately.
+3. Instead, subtract 1 from their health and push them back 20 pixels.
+4. Only use `.kill()` when `health <= 0`.
+
+### 📝 Level 3: Particle Foundations
+
+1. Create a `Particle` class that inherits from `pygame.sprite.Sprite`.
+2. When an enemy is destroyed, spawn 5 small, random-colored particles at their location.
+3. **Logic**: The particles should fly in random directions and disappear after 1 second.
+
+**Check your progress**: If you have enemies that flee, survive hits, and explode into particles, you've mastered 2D Game Physics!
