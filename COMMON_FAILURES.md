@@ -40,9 +40,12 @@ This document covers the "Why" behind common Pygame bugs. Do not look for a quic
 ---
 
 ## Debugging Discipline
+
 If you are guessing what's wrong, you have already lost.
+
 1. **Isolate**: Comment out everything except the failing component.
 2. **Visualize**: Use `print()` to see the coordinates of your Rects or the value of your variables.
 3. **Simplify**: If a complex Sprite Group is failing, test with one single Rect.
 
+### The Debugger's Mantra
 **"If you don't know what changed, you're guessing."**
