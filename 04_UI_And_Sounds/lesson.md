@@ -64,9 +64,9 @@ if button_rect.collidepoint(pygame.mouse.get_pos()):
 
 ## 🎯 The Definition of Mastery
 You have mastered this concept when you can orchestrate a transition between a "Splash Screen" and "Gameplay" using a central state variable and appropriate audio cues.
-```
 
----
+## 🔋 What this unlocks next
+This is the final building block. Understanding UI and state management unlocks the ability to build **complete products**, from main menus to game-over loops.
 
 ---
 

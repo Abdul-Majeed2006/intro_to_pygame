@@ -68,7 +68,8 @@ This lets you change controls in one place without breaking your game logic.
 ## 🎯 The Definition of Mastery
 You have mastered this concept when you can justify the choice between `pygame.event` and `pygame.key.get_pressed()` for any given game mechanic.
 
----
+## 🔋 What this unlocks next
+Input handling is the gateway to **Entity Management**. Once you control one object, you'll soon want to control hundreds.
 
 ---
 
