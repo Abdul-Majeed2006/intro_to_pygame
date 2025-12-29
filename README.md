@@ -64,6 +64,7 @@ Each folder is a complete lesson including **Theory**, **Example Code**, **Local
    Move beyond basic shapes to professional Sprite-based architecture and efficient collision logic.
 4. **[04. UI and Sounds](./04_UI_And_Sounds/)**
    Add "The Juice" with dynamic Sound Managers and reactive User Interfaces (Buttons & Text).
+
 5. **[Final Capstone: Space Salvage](./Capstone_Project/)**
    The final test. Integrate everything to build your first "Momentum-based" space game.
 
