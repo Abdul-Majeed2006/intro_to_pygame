@@ -30,7 +30,8 @@ You will build **Space Salvage**—a complete entity-management project featurin
 ## Engineering Resources
 - **[Why Pygame?](./docs/WHY_PYGAME.md)**: Tool tradeoffs.
 - **[Advanced Roadmap](./docs/ADVANCED_ROADMAP.md)**: v2.0 trajectory.
-- **[Common Failures](./docs/COMMON_FAILURES.md)**: Professional debugging guidance.
+- **[Common Failures (Wall of Shame)](./COMMON_FAILURES.md)**: Professional debugging guidance.
+- **[Capstone Rubric](./Capstone_Project/RUBRIC.md)**: Strict grading criteria.
 
 ---
 **Strict Enforcement**: This repository follows an **[Anti-Copy Policy](./docs/ANTI_COPY_POLICY.md)**. Typing is thinking.

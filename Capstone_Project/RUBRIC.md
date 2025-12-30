@@ -1,55 +1,42 @@
-# 🎓 Capstone Rubric: Space Salvage
+# 🏆 Capstone Project Rubric
 
-This rubric defines the boundary between a "functional script" and a "stable product." Use this to self-assess your Capstone project.
+> **"In the real world, 'it works on my machine' is not an excuse. It either runs perfectly, or it's broken."**
 
-## 🛑 PASS / FAIL GATE (Non-Negotiable)
-If your project fails any of these criteria, it is considered **Incomplete**.
-- [ ] **Technical Viability**: The code must run without crashing.
-- [ ] **State Integrity**: The window must be closeable at any time via the standard 'X' button or Alt+F4.
-- [ ] **Frame Control**: The game does not consume 100% CPU when idle; `Clock.tick()` must be implemented.
-- [ ] **Game over State**: The game must have a terminal state (win or lose) from which the user can restart or quit.
-
----
-
-## 🏗️ Core Competencies
-
-### A. Architecture & Structure
-- **❌ Fail**: Logic is written in the global scope; values are hardcoded everywhere.
-- **⚠️ Meets Minimum**: Logic is wrapped in functions or a main class. Some use of shared state.
-- **✅ Excellent**: Strict separation between the Game Loop, Update logic, and Rendering. Zero global state.
-
-### B. Input & Events
-- **❌ Fail**: Input handling blocks the loop (e.g., using `time.sleep`).
-- **⚠️ Meets Minimum**: Uses `pygame.event.get()` for all events but mixes discrete triggers with polling logic incorrectly.
-- **✅ Excellent**: Clear distinction between one-time events (Menu/Quit) and continuous polling (Movement).
-
-### C. Timing & Discipline
-- **❌ Fail**: Movement speed is tied to the CPU speed (faster CPU = faster player).
-- **⚠️ Meets Minimum**: Uses `Clock.tick(60)` to cap frame rate, but lacks awareness of lag-spikes.
-- **✅ Excellent**: Consistent 60 FPS target; logic is deterministic and ignores frame-count for physics.
-
-### D. Collision & State Logic
-- **❌ Fail**: Collisions are erratic or use incorrect Rect offsets.
-- **⚠️ Meets Minimum**: Collisions work but rely on "Magic Numbers" for sizes or offsets.
-- **✅ Excellent**: Uses Pygame `Rect` methods (like `colliderect` or `collidepoint`) and localized bounding boxes correctly.
-
-### E. Code Clarity
-- **❌ Fail**: Variables are named `p`, `x`, `y1`. No comments provided.
-- **⚠️ Meets Minimum**: Variables are descriptive (e.g., `player_pos`). Comments explain *what* the code does.
-- **✅ Excellent**: Variables explain *why* they exist. Comments explain architectural decisions and "why" complex logic was chosen.
+### ❌ AUTOMATIC FAILURE CONDITIONS (0%)
+If your submission has any of these, **do not bother submitting.**
+1.  **Crash on Launch:** The script crashes immediately upon execution.
+2.  **Missing Assets:** You didn't include the `/assets` folder or used absolute paths (e.g., `C:/Users/You/Desktop...`).
+3.  **Infinite Loop:** The window freezes and cannot be closed normally.
+4.  **Plagiarism:** Copy-pasting code from the examples without modification or understanding.
 
 ---
 
-## 🚩 Automatic Red Flags
-The presence of any of these indicates a lack of fundamental discipline:
-- **Nested `while True` loops** (Logic starvation).
-- **Physics tied to Frame Rate** (No delta-time or fixed-tick awareness).
-- **Hardcoded paths** (e.g., `C:\Users\Name\Desktop...`).
-- **Unlabeled Constants** (Hex colors or coordinates without names).
+### 🟢 PASSING CRITERIA (100 Points Total)
 
-## 🧠 Final Self-Assessment
-1. If you had to add a "Second Level" to this game, how many files would you have to edit?
-2. If the user’s computer runs at 144Hz, will your game break or speed up?
-3. What is the single most fragile part of your code right now?
+#### 1. Engineering Standards (30 Points)
+- **[10pts] Clean Loop:** Game loop is separated into clear Input, Update, and Draw phases.
+- **[10pts] No Globals:** Uses `def main():` or a `Game` class. No code running in the global scope.
+- **[10pts] Asset Management:** Images/Sounds loaded *once* before the loop, not every frame.
 
-**Masters don't build perfect things; they build things they understand.**
+#### 2. Gameplay & Mechanics (30 Points)
+- **[10pts] Controls:** Movement is smooth (using `dt` or proper frame limiting). Input response is snappy.
+- **[10pts] Win/Loss State:** The game can actually end (Game Over screen) and optionally restart.
+- **[10pts] Fairness:** Hitboxes are reasonably accurate (no dying when not touching anything).
+
+#### 3. User Experience (20 Points)
+- **[10pts] Clarity:** Is it obvious how to play? (Instructions or intuitive design).
+- **[10pts] Feedback:** Visual/Audio confirmation when things happen (e.g., sound on jump, flash on hit).
+
+#### 4. Code Quality (20 Points)
+- **[10pts] Readability:** Variable names make sense (`player_velocity`, not `pv`).
+- **[10pts] Comments:** Complex logic is explained. "Teacher's Voice" style comments are a bonus.
+
+---
+
+### 🌟 BONUS (Distinction)
+- **[+5pts] Polish:** Menus, pause screens, or high-score saving.
+- **[+5pts] "Juice":** Screen shake, particle effects, or dynamic lighting.
+
+---
+
+**Final Grade:** ______ / 100

@@ -67,11 +67,17 @@ def run_lesson():
 
     BUTTON_RECT = pygame.Rect((SCREEN_WIDTH // 2) - 110, (SCREEN_HEIGHT // 2) - 30, 220, 60)
 
-    # Professional Palette
+    # 6. Professional Palette (Defined once)
     MIDNIGHT = (20, 20, 25) 
     HIGHLIGHT = (255, 255, 0)
     IDLE_BROWN = (80, 80, 80)
     ACTIVE_BROWN = (120, 120, 120)
+
+    # 7. Pre-Render Static UI (Performance Tip)
+    # Don't render static text inside the game loop! It eats CPU unnecessarily.
+    static_button_label = BUTTON_FACE.render("CLICK ME", True, (255, 255, 255))
+    label_x = BUTTON_RECT.centerx - static_button_label.get_width() // 2
+    label_y = BUTTON_RECT.centery - static_button_label.get_height() // 2
 
     while is_engine_active:
         mouse_pos = pygame.mouse.get_pos()
@@ -89,7 +95,7 @@ def run_lesson():
         # --- Render ---
         main_display_surface.fill(MIDNIGHT)
         
-        # Counter Overlay
+        # Counter Overlay (Dynamic Text must be re-rendered)
         score_surf = TITLE_FACE.render(f"CLICKS: {interaction_count}", True, HIGHLIGHT)
         main_display_surface.blit(score_surf, (SCREEN_WIDTH // 2 - score_surf.get_width() // 2, 80))
         
@@ -97,9 +103,8 @@ def run_lesson():
         btn_color = ACTIVE_BROWN if BUTTON_RECT.collidepoint(mouse_pos) else IDLE_BROWN
         pygame.draw.rect(main_display_surface, btn_color, BUTTON_RECT, border_radius=10)
         
-        # Button Label
-        label = BUTTON_FACE.render("CLICK ME", True, (255, 255, 255))
-        main_display_surface.blit(label, (BUTTON_RECT.centerx - label.get_width() // 2, BUTTON_RECT.centery - label.get_height() // 2))
+        # Use the pre-rendered label
+        main_display_surface.blit(static_button_label, (label_x, label_y))
 
         pygame.display.flip()
         clock.tick(60)

@@ -50,6 +50,10 @@ def run_lesson():
 
     # 6. The Engine Heartbeat (Game Loop)
     is_engine_running = True
+    
+    # Define colors outside the loop to avoid re-creation every frame.
+    MIDNIGHT_BLUE = (25, 25, 112)
+
     while is_engine_running:
         # --- Step 1: Event Handling ---
         for event in pygame.event.get():
@@ -57,16 +61,18 @@ def run_lesson():
                 is_engine_running = False
 
         # --- Step 2: Rendering ---
-        MIDNIGHT_BLUE = (25, 25, 112)
+        # Wipe the screen clean every frame (Painter's Algorithm)
         display_surface.fill(MIDNIGHT_BLUE)
 
         # Draw the tile at coordinate (0, 0)
         display_surface.blit(sand_tile_image, (0, 0))
 
         # Show the finished frame (Double Buffering)
+        # We draw to a back buffer, then flip it to the front to avoid partial rendering artifacts.
         pygame.display.flip()
         
         # Maintain steady heartbeat
+        # This prevents the game from running too fast (burning CPU) or too variable.
         engine_clock.tick(TARGET_FPS)
 
     # 7. Graceful Shutdown

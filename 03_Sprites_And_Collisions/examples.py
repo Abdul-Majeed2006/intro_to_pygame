@@ -79,23 +79,31 @@ def run_lesson():
     frame_rate_manager = pygame.time.Clock()
     current_session_score = 0
     is_simulation_active = True
+    
+    BACKGROUND_DARK = (30, 30, 30)
 
     while is_simulation_active:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_simulation_active = False
 
+        # Update all sprites in the group with one call
+        # This calls the .update() method on every sprite added to the group.
         active_entities_layer.update()
 
         # Hit Detection
+        # spritecollide(sprite, group, dokill) checks if 'sprite' overlaps with any in 'group'.
+        # dokill=True means "Remove the enemy from all groups if hit".
         detected_collisions = pygame.sprite.spritecollide(hero_sprite, enemies_group, True)
+        
         for collision_hit in detected_collisions:
             current_session_score += 1
             print(f"COLLISION: Entity absorbed! Current Score: {current_session_score}")
 
         # Rendering
-        BACKGROUND_DARK = (30, 30, 30)
         game_window.fill(BACKGROUND_DARK)
+        
+        # Batch Draw: Blits every sprite in the group to the surface at their .rect location.
         active_entities_layer.draw(game_window)
         
         pygame.display.flip()

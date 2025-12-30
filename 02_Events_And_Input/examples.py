@@ -47,8 +47,15 @@ def run_lesson():
 
     # 6. Core Game Loop
     is_engine_active = True
+    
+    # Define colors/constants outside the loop
+    CHARCOAL_GREY = (50, 50, 50)
+    POINTER_COLOR = (255, 255, 255)
+    POINTER_RADIUS = 12
+
     while is_engine_active:
         # --- A. EVENT HANDLING (Discrete Actions) ---
+        # "Did it happen *just now*?" (e.g., Pause, Jump, Shoot, Quit)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 is_engine_active = False
@@ -60,16 +67,18 @@ def run_lesson():
                     is_engine_active = False
 
         # --- B. STATE CHECKING / POLLING (Continuous Actions) ---
+        # "Is it *currently* happening?" (e.g., Movement, Charging)
         active_keys = pygame.key.get_pressed()
         if active_keys[pygame.K_w] or active_keys[pygame.K_UP]:
             # This is where continuous movement logic would happen
             pass 
-
+            
         # --- C. MOUSE INPUT ---
         current_mouse_position = pygame.mouse.get_pos()
         mouse_buttons_state = pygame.mouse.get_pressed()
         
-        if mouse_buttons_state[0]: # Left Click
+        # Note: mouse_buttons_state returns (Left, Middle, Right) booleans
+        if mouse_buttons_state[0]: 
             print(f"INPUT: Mouse Left Click at {current_mouse_position}")
 
         # --- D. CONTROLLER INPUT ---
@@ -78,12 +87,9 @@ def run_lesson():
                 print(f"INPUT: Button 0 pressed on {active_gamepad.get_name()}")
 
         # --- RENDERING ---
-        CHARCOAL_GREY = (50, 50, 50)
         display_surface.fill(CHARCOAL_GREY)
         
         # Draw a white circle tracking the mouse cursor
-        POINTER_COLOR = (255, 255, 255)
-        POINTER_RADIUS = 12
         pygame.draw.circle(display_surface, POINTER_COLOR, current_mouse_position, POINTER_RADIUS)
 
         pygame.display.flip()
